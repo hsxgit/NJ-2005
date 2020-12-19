@@ -4,6 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+            function Girl(name){
+            this.name = name;
+            this.receive = function(gift){
+                console.log('我是'+this.name+'，我收到了礼物：'+gift);
+            }
+        }
+        function Boy(name){
+            this.name = name;
+            this.send = function(proxy,girl,gift){
+                console.log('我是'+this.name+'，我要送给'+girl.name+'礼物：'+gift);
+                proxy.sendGirl(gift,this,girl);
+            };
+        }
+        function ProxyGirl(name){
+            this.name = name;
+            this.sendGirl = function(gift,boy,girl){
+                console.log(girl.name+'有人送你礼物，他的名字叫做：'+boy.name);
+                girl.receive(gift);
+            }
+        }
+        let g = new Girl('翠花');
+        let b = new Boy('铁柱');
+        let p = new ProxyGirl('红红');
+        b.send(p,g,'巧克力');
+    </script>
 </head>
 <body>
     <p>
